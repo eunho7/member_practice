@@ -1,4 +1,4 @@
-# 스프링부트 회 프로젝트
+# 스프링부트 회원 프로젝트
 코딩 레시피 : https://github.com/codingrecipe1/member_new
 
 ## (1) 개발 환경
