@@ -7,4 +7,7 @@
 3. JDK 17
 4. mysql
 5. Spring Data JPA
-6. Thymeleaf
+6. Thymeleaf  
+
+
+## (2) 주요 기능
