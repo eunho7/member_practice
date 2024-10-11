@@ -37,22 +37,28 @@
             border-top-right-radius: 0;
         }
     </style>
-    <title>로그인</title>
+    <title>회원 가입</title>
 </head>
 <body class="d-flex align-items-center py-4 bg-body-tertiary">
 <main class="form-signin w-100 m-auto">
-    <form action="/member/login" method="post">
-        <h1 class="h3 text-center mb-3 fw-normal">로그인</h1>
+    <form action="/member/update" method="post">
+        <h1 class="h3 text-center mb-3 fw-normal">회원정보 수정하기</h1>
         <!-- name속성: 서버로 전송할 때 변수이름의 역할 -->
+        <input type="hidden" th:value="${updateMember.id}" name="id">
         <div class="form-floating">
-            <input name="memberEmail" type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <input name="memberEmail" type="text" class="form-control" id="floatingInput" th:value="${updateMember.memberEmail}" readonly>
             <label for="floatingInput">이메일</label>
         </div>
         <div class="form-floating">
-            <input name="memberPassword" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <input name="memberPassword" type="password" class="form-control" id="floatingPassword" th:value="${updateMember.memberPassword}">
             <label for="floatingPassword">비밀번호</label>
         </div>
-        <button class="btn btn-primary w-100 py-2" type="submit">로그인</button>
+        <div class="form-floating">
+            <input name="memberName" type="text" class="form-control" id="floatingName" th:value="${updateMember.memberName}">
+            <label for="floatingName">이름</label>
+        </div>
+
+        <button class="btn btn-primary w-100 py-2" type="submit">회원정보 수정</button>
     </form>
 </main>
 </body>

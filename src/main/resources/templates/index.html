@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,7 +9,7 @@
 <body>
     <button type="button" class="btn btn-primary" onclick="saveReq()">회원가입</button>
     <button type="button" class="btn btn-primary" onclick="loginReq()">로그인</button>
-    <button type=""></button>
+    <button class="btn btn-warning" onclick="listReq()">회원목록</button>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
@@ -19,6 +19,9 @@
     }
     const loginReq = () => {
         location.href = "/member/login";
+    }
+    const listReq = () => {
+        location.href = "/member/";
     }
 </script>
 </html>

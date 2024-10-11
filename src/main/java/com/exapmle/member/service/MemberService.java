@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Member;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -40,6 +42,57 @@ public class MemberService {
             // 조회 결과가 없다.
             // 해당 이메일이 없다.
             return null;
+        }
+    }
+
+    public List<MemberDTO> findAll() {
+        List<MemberEntity> memberEntityList = memberRepository.findAll();
+        List<MemberDTO> memberDTOList = new ArrayList<>();
+        for(MemberEntity memberEntity : memberEntityList) {
+            memberDTOList.add(MemberDTO.toMemberDTO(memberEntity));
+        }
+        return memberDTOList;
+    }
+
+    // member 상세 조회 service
+    public MemberDTO findById(Long id) {
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findById(id);
+        if(optionalMemberEntity.isPresent()) {
+            return MemberDTO.toMemberDTO(optionalMemberEntity.get());
+        } else {
+            return null;
+        }
+    }
+
+    // member 수정 Form
+    public MemberDTO updateForm(String myEmail) {
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findByMemberEmail(myEmail);
+        if(optionalMemberEntity.isPresent()){
+            return MemberDTO.toMemberDTO(optionalMemberEntity.get());
+        } else {
+            return null;
+        }
+    }
+
+    // member 수정
+    public void update(MemberDTO memberDTO) {
+        memberRepository.save(MemberEntity.toUpdateEntity(memberDTO));
+    }
+
+    // memeber 삭제 service
+    public void deleteById(Long id) {
+        memberRepository.deleteById(id);
+    }
+
+    // email 확인 service
+    public String emailCheck(String memberEmail) {
+        Optional<MemberEntity> byMemberEmail = memberRepository.findByMemberEmail(memberEmail);
+        if(byMemberEmail.isPresent()){
+            // 조회결과가 있다. -> 사용할 수 없다.
+            return null;
+        } else {
+            // 조회결과가 없다. -> 사용할 수 있다.
+            return "ok";
         }
     }
 }
